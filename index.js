@@ -31,7 +31,7 @@ firebase.auth().onAuthStateChanged(async function(user) {
       let postPrice = document.querySelector('#price').value
       let postRating = document.querySelector('#rating').value
       
-      //will need to convert into netlify that is commented out below
+      //will need to convert into netlify function that is commented out below
       let addPost = await db.collection('dishes').add({
         username: postUsername,
         imageUrl: postImageUrl,
@@ -51,6 +51,41 @@ firebase.auth().onAuthStateChanged(async function(user) {
       //   })
       // })
       
+      //will need to replace with json netfliy functions later 
+        let querySnapshot = await db.collection('dishes').get()
+        let dishes = querySnapshot.docs
+
+      for(let i = 0; i<dishes.length; i++) {
+        let dishId = dishes[i].id 
+        let dishData = dishes[i].data()
+        let dishUsername = dishData.username
+        let dishImageUrl = dishData.imageUrl
+        let dishDish = dishData.dish
+        let dishRestaurant = dishData.restaurant
+        let dishPrice = dishData.price
+        let dishRating = dishData.rating
+        let dishLikes = dishData.likes
+
+        console.log(dishDish)
+
+        document.querySelector('.dishes').insertAdjacentHTML('beforeend', `
+          <div class="post-${dishId} md:mt-16 mt-8 space-y-8">
+            <div class="md:mx-0 mx-4">
+              <span class="font-bold text-xl">${dishDish}</span>
+            </div>
+            <div>
+              <img src="${dishImageUrl}" class="w-full">
+            </div>
+      
+            <div class="text-3xl md:mx-0 mx-4">
+              <button class="like-button">❤️</button>
+              <span class="likes">0</span>
+              <span class="rating">${dishRating}/10 </span>
+              <span class="price"> $${dishPrice}</span>
+            </div>
+          </div>
+        `)
+      }
       // let post = await response.json()
       // document.querySelector('#image-url').value = '' // clear the image url field
       // renderPost(post)
