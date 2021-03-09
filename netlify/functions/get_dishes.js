@@ -6,7 +6,6 @@ exports.handler = async function(event) {
   let dishesData = []                                               // an empty Array
   
   let dishesQuery = await db.collection('dishes')                   // posts from Firestore
-                            // .where('restaurant', '==', restaurant)  // dishes from selected restaurant if selected
                             .orderBy('rating', "desc")              // ordered by dish rating
                             .get()
   let dishes = dishesQuery.docs                                     // the post documents themselves

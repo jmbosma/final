@@ -26,13 +26,20 @@ firebase.auth().onAuthStateChanged(async function(user) {
     let restaurant = ''
     let restaurants = document.querySelectorAll('.restaurant')
     let numRestaurants = restaurants.length
-    console.log(numRestaurants)
+    // console.log(numRestaurants)
 
     for (let i=0; i<numRestaurants; i++) {
       restaurants[i].addEventListener('click', async function(event) {
-        restaurant = restaurants[i].innerHTML
         event.preventDefault()
-        console.log(`${restaurant} clicked`)
+        restaurant = restaurants[i].innerHTML
+        // console.log(`${restaurant} clicked`)
+
+        //clear all previous rendered posts
+
+        const item = document.querySelector('.dishes')
+        while (item.firstChild) {
+          item.removeChild(item.firstChild)
+        }
 
         //render posts for only dishes that are part of restaurant clicked
         let response = await fetch('/.netlify/functions/get_dishes')
@@ -45,7 +52,6 @@ firebase.auth().onAuthStateChanged(async function(user) {
         }
       })
     }
-    console.log(restaurant)
 
     // Listen for the form submit and create/render the new post
     document.querySelector('form').addEventListener('submit', async function(event) {
