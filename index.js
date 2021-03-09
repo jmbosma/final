@@ -118,6 +118,7 @@ async function renderPost(dish) {
     <div class="dish-${dishId} md:mt-16 mt-8 space-y-8">
       <div class="md:mx-0 mx-4">
         <span class="font-bold text-xl">${dish.dish}</span>
+        <span class="font-light text-xl"> - ${dish.restaurant}</span>
       </div>
       <div>
         <img src="${dish.imageUrl}" class="w-full">
