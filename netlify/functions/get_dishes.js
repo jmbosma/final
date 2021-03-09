@@ -2,20 +2,21 @@
 let firebase = require('./firebase')
 
 exports.handler = async function(event) {
-  let db = firebase.firestore()                             // define a variable so we can use Firestore
-  let dishesData = []                                        // an empty Array
+  let db = firebase.firestore()                                     // define a variable so we can use Firestore
+  let dishesData = []                                               // an empty Array
   
-  let dishesQuery = await db.collection('dishes')           // posts from Firestore
-                            .orderBy('rating', "desc")             // ordered by dish rating
+  let dishesQuery = await db.collection('dishes')                   // posts from Firestore
+                            // .where('restaurant', '==', restaurant)  // dishes from selected restaurant if selected
+                            .orderBy('rating', "desc")              // ordered by dish rating
                             .get()
-  let dishes = dishesQuery.docs                               // the post documents themselves
+  let dishes = dishesQuery.docs                                     // the post documents themselves
   
   // loop through the post documents
   for (let i=0; i<dishes.length; i++) {
-    let dishId = dishes[i].id                                // the ID for the given post
-    let dishData = dishes[i].data()                          // the rest of the post data
-    let likesQuery = await db.collection('likes')           // likes from Firestore
-                             .where('dishId', '==', dishId) // for the given postId
+    let dishId = dishes[i].id                                       // the ID for the given post
+    let dishData = dishes[i].data()                                 // the rest of the post data
+    let likesQuery = await db.collection('likes')                   // likes from Firestore
+                             .where('dishId', '==', dishId)         // for the given postId
                              .get()
     // let commentsQuery = await db.collection('comments')     // likes from Firestore
     //                          .where('postId', '==', postId) // for the given postId
