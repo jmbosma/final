@@ -41,6 +41,7 @@ firebase.auth().onAuthStateChanged(async function(user) {
         rating: postRating,
         likes: 0
       })
+    })
 
       // let response = await fetch('/.netlify/functions/create_post', {
       //   method: 'POST',
@@ -69,7 +70,7 @@ firebase.auth().onAuthStateChanged(async function(user) {
         console.log(dishDish)
 
         document.querySelector('.dishes').insertAdjacentHTML('beforeend', `
-          <div class="post-${dishId} md:mt-16 mt-8 space-y-8">
+          <div class="dish-${dishId} md:mt-16 mt-8 space-y-8">
             <div class="md:mx-0 mx-4">
               <span class="font-bold text-xl">${dishDish}</span>
             </div>
@@ -79,17 +80,28 @@ firebase.auth().onAuthStateChanged(async function(user) {
       
             <div class="text-3xl md:mx-0 mx-4">
               <button class="like-button">❤️</button>
-              <span class="likes">0</span>
+              <span class="likes">${dishLikes}</span>
               <span class="rating">${dishRating}/10 </span>
               <span class="price"> $${dishPrice}</span>
+              <span class="username text-sm text-right font-light">@${dishUsername}</span>
             </div>
           </div>
         `)
+        document.querySelector(`.dish-${dishId} .like-button`).addEventListener('click', async function(event){  
+          event.preventDefault()
+          console.log(`dish ${dishId} like button clicked!`)
+          let existingNumberOfLikes = document.querySelector(`.dish-${dishId} .likes`).innerHTML
+          let newNumberOfLikes= parseInt(existingNumberOfLikes) + 1
+          document.querySelector(`.dish-${dishId} .likes`).innerHTML = newNumberOfLikes
+          await db.collection('dishes').doc(dishId).update({
+            likes: firebase.firestore.FieldValue.increment(1)
+          })
+        })      
       }
       // let post = await response.json()
       // document.querySelector('#image-url').value = '' // clear the image url field
       // renderPost(post)
-    })
+    
 
     // let response = await fetch('/.netlify/functions/get_posts')
     // let posts = await response.json()
