@@ -125,10 +125,10 @@ async function renderPost(dish) {
       </div>
 
       <div class="text-3xl md:mx-0 mx-4">
-        <button class="like-button">❤️</button>
-        <span class="likes">${dish.likes}</span>
-        <span class="rating">${dish.rating}/10 </span>
-        <span class="price"> $${dish.price}</span>
+        <button class="like-button w-1/4">❤️</button>
+        <span class="likes w-1/4">${dish.likes}</span>
+        <span class="rating w-1/4">${dish.rating}/10 </span>
+        <span class="price w-1/4"> $${dish.price}</span>
         <span class="username text-sm text-right font-light">@${dish.username}</span>
       </div>
     </div>
