@@ -125,7 +125,7 @@ async function renderPost(dish) {
         <img src="${dish.imageUrl}" class="w-full">
       </div>
 
-      <div class="flex justify-around text-3xl md:mx-0 mx-4">
+      <div class="justify-around text-3xl md:mx-0 mx-4">
         <button class="like-button">❤️</button>
         <span class="likes">${dish.likes}</span>
         <span class="rating">${dish.rating}/10 </span>
