@@ -42,7 +42,7 @@ firebase.auth().onAuthStateChanged(async function(user) {
         }
 
         //render posts for only dishes that are part of restaurant clicked
-        let response = await fetch('/.netlify/functions/get_dishes')
+        let response = await fetch('https://nostalgic-carson-32e0ad.netlify.app/.netlify/functions/get_dishes')
         let dishes = await response.json()
         for (let i=0; i<dishes.length; i++) {
           let dish = dishes[i]
@@ -85,7 +85,7 @@ firebase.auth().onAuthStateChanged(async function(user) {
       renderPost(dish)
     }) 
 
-    let response = await fetch('/.netlify/functions/get_dishes')
+    let response = await fetch('https://nostalgic-carson-32e0ad.netlify.app/.netlify/functions/get_dishes')
     let dishes = await response.json()
     for (let i=0; i<dishes.length; i++) {
       let dish = dishes[i]
