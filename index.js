@@ -119,13 +119,13 @@ async function renderPost(dish) {
       <div class="md:mx-0 mx-4">
         <span class="font-bold text-xl underline">${dish.dish}</span>
         <span class="font-light text-xl"> - ${dish.restaurant}</span>
-        <span class="username text-sm text-right font-light right-0">@${dish.username}</span>
         </div>
+          <span class="username text-sm text-right font-light right-0">@${dish.username}</span>
       <div>
         <img src="${dish.imageUrl}" class="w-full">
       </div>
 
-      <div class="text-3xl md:mx-0 mx-4 flex justify-center">
+      <div class="flex justify-center text-3xl md:mx-0 mx-4">
         <button class="like-button">❤️</button>
         <span class="likes">${dish.likes}</span>
         <span class="rating">${dish.rating}/10 </span>
