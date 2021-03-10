@@ -126,9 +126,9 @@ async function renderPost(dish) {
       </div>
 
       <div class="justify-around text-3xl md:mx-0 mx-4">
-        <span button class="like-button">❤️</button>&" Likes">${dish.likes}</span>
-        <span class="rating">${dish.rating}/10&" Rating"</span>
-        <span class="price"> $${dish.price}&" Price"</span>
+        <span button class="like-button">❤️</button>${dish.likes}</span>
+        <span class="rating">${dish.rating}/10 Rating</span>
+        <span class="price"> $${dish.price} Price</span>
       </div>
     </div>
   `)
