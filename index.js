@@ -115,23 +115,23 @@ firebase.auth().onAuthStateChanged(async function(user) {
 async function renderPost(dish) {
   let dishId = dish.id
   document.querySelector('.dishes').insertAdjacentHTML('beforeend', `
-    <div class="dish-${dishId} md:mt-16 mt-8 space-y-8">
+    <div class="dish-${dishId} md:mt-16 mt-8 space-y-8 rounded-lg p-4 border-solid border-8 border-blue-100">
       <div class="md:mx-0 mx-4">
         <span class="font-bold text-xl underline">${dish.dish}</span>
         <span class="font-light text-xl"> - ${dish.restaurant}</span>
         </div>
     <span class="username text-sm text-right font-light">@${dish.username}</span>
       <div>
-        <img src="${dish.imageUrl}" class="w-full">
+        <img src="${dish.imageUrl}" class="w-full shadow-xl">
       </div>
 
-      <div class=" flex text-2xl md:mx-0 mx-4">
+      <div class="flex text-2xl md:mx-0 mx-4">
         <button class="like-button">❤️</button> 
         <span class = "w-1/3 likes">${dish.likes}</span>
         <span class="w-1/2 rating">Dish Rating: ${dish.rating}/10</span>
         <span class="w-1/3 text-right price"> $${dish.price}</span>
       </div>
-    </div>
+      </div>
   `)
 
   let likeButton = document.querySelector(`.dish-${dishId} .like-button`)
