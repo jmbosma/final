@@ -8,13 +8,14 @@ exports.handler = async function(event) {
   // let username = body.username
   // let imageUrl = body.imageUrl
 
+
   let userId = body.userId
   let username = body.username
   let imageUrl = body.imageUrl
   let dish = body.dish
   let restaurant = body.restaurant
-  let price = body.price
-  let rating = body.rating
+  let price = parseFloat(body.price)
+  let rating = parseFloat(body.rating)
 
   console.log(`user: ${userId}`)
   console.log(`imageUrl: ${imageUrl}`)
@@ -22,7 +23,6 @@ exports.handler = async function(event) {
   console.log(`restaurant: ${restaurant}`)
   console.log(`price: ${price}`)
   console.log(`rating: ${rating}`)
-
 
   let newDish = {
     userId: userId,
@@ -35,7 +35,10 @@ exports.handler = async function(event) {
     created: firebase.firestore.FieldValue.serverTimestamp()
   }
 
+  console.log(newDish)
+
   let docRef = await db.collection('dishes').add(newDish)
+
   newDish.id = docRef.id
   newDish.likes = 0
 
