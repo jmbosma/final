@@ -119,7 +119,8 @@ async function renderPost(dish) {
       <div class="md:mx-0 mx-4">
         <span class="font-bold text-xl underline">${dish.dish}</span>
         <span class="font-light text-xl"> - ${dish.restaurant}</span>
-      </div>
+        <span class="username text-sm text-right font-light">@${dish.username}</span>
+        </div>
       <div>
         <img src="${dish.imageUrl}" class="w-full">
       </div>
@@ -129,7 +130,6 @@ async function renderPost(dish) {
         <span class="likes w-1/4">${dish.likes}</span>
         <span class="rating w-1/4">${dish.rating}/10 </span>
         <span class="price w-1/4"> $${dish.price}</span>
-        <span class="username text-sm text-right font-light">@${dish.username}</span>
       </div>
     </div>
   `)
