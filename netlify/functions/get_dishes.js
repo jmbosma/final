@@ -33,6 +33,8 @@ exports.handler = async function(event) {
     // }
 
     // add a new Object of our own creation to the postsData Array
+    console.log(dishData.rating)
+    
     dishesData.push({
       id: dishId,                                           // the post ID
       imageUrl: dishData.imageUrl,                          // the image URL

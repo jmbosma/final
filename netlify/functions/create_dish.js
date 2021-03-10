@@ -24,7 +24,7 @@ exports.handler = async function(event) {
   console.log(`rating: ${rating}`)
 
 
-  let newDish = { 
+  let newDish = {
     userId: userId,
     username: username, 
     imageUrl: imageUrl,
