@@ -67,12 +67,9 @@ firebase.auth().onAuthStateChanged(async function(user) {
       
       //creates query of all restaurants to create filter buttons
       let restaurant = dish.restaurant
-      console.log(restaurant)
-      console.log(restaurantQuery.indexOf(restaurant))
       if (restaurantQuery.indexOf(restaurant) < 0){
         restaurantQuery.push(restaurant)
-      }
-      console.log(restaurantQuery)      
+      }    
     }
 
     //restaurant buttons
@@ -90,7 +87,7 @@ firebase.auth().onAuthStateChanged(async function(user) {
       restaurants[i].addEventListener('click', async function(event) {
         event.preventDefault()
         restaurant = restaurants[i].innerHTML
-        // console.log(`${restaurant} clicked`)
+        console.log(`${restaurant} clicked`)
 
         //clear all previous rendered posts
 
