@@ -5,9 +5,14 @@ firebase.auth().onAuthStateChanged(async function(user) {
     // Signed in
     console.log('signed in')
 
+    // // display username for current user
+    // document.querySelector('.sign-in-or-sign-out').innerHTML = `
+    // <button class="text-grey-500 underline sign-out">Sign Out</button>
+    // `
+
     // Sign-out button
     document.querySelector('.sign-in-or-sign-out').innerHTML = `
-      <button class="text-pink-500 underline sign-out">Sign Out</button>
+      <button class="text-grey-500 underline sign-out">Sign Out</button>
     `
     document.querySelector('.sign-out').addEventListener('click', function(event) {
       console.log('sign out clicked')
@@ -138,12 +143,12 @@ async function renderRestaurant(restaurant) {
 async function renderPost(dish) {
   let dishId = dish.id
   document.querySelector('.dishes').insertAdjacentHTML('beforeend', `
-    <div class="dish-${dishId} md:mt-16 mt-8 space-y-8 rounded-lg p-4 border-solid border-8 border-blue-100">
-      <div class="md:mx-0 mx-4">
-        <span class="font-bold text-xl underline">${dish.dish}</span>
-        <span class="font-light text-xl"> - ${dish.restaurant}</span>
-        </div>
-    <span class="username text-sm text-right font-light">@${dish.username}</span>
+    <div class="dish-${dishId} md:mt-16 mt-8 space-y-8 rounded-lg p-4 border-solid border-8 border-gray-400">
+      <div class="flex md:mx-0 mx-4">
+        <span class="w-1/3 text-left font-light text-xl">${dish.restaurant}</span>
+        <span class="w-1/3 text-center font-bold text-xl underline">${dish.dish}</span>
+        <span class="w-1/3 text-right text-sm font-light">@${dish.username}</span>
+      </div>
       <div>
         <img src="${dish.imageUrl}" class="w-full shadow-xl">
       </div>

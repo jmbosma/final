@@ -10,6 +10,7 @@ div.restaurants {
     text-align: center;
     padding: 14px;
     text-decoration: none;
+    border: white
   }
   
   div.restaurants a:hover {
