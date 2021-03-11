@@ -130,9 +130,10 @@ firebase.auth().onAuthStateChanged(async function(user) {
 
 async function renderRestaurant(restaurant) {
   document.querySelector('.restaurants').insertAdjacentHTML('beforeend', `
-  <button class="restaurant bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-xl">${restaurant}</button>
+  <button class="restaurant text-white px-4 py-2 rounded-xl">${restaurant}</button>
   `)
 }
+//<button class="restaurant inline bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-xl">${restaurant}</button>
 
 async function renderPost(dish) {
   let dishId = dish.id
