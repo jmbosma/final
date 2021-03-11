@@ -22,36 +22,7 @@ firebase.auth().onAuthStateChanged(async function(user) {
     })
 
     
-    //restaurant buttons
-    let restaurant = ''
-    let restaurants = document.querySelectorAll('.restaurant')
-    let numRestaurants = restaurants.length
-    // console.log(numRestaurants)
 
-    for (let i=0; i<numRestaurants; i++) {
-      restaurants[i].addEventListener('click', async function(event) {
-        event.preventDefault()
-        restaurant = restaurants[i].innerHTML
-        // console.log(`${restaurant} clicked`)
-
-        //clear all previous rendered posts
-
-        const item = document.querySelector('.dishes')
-        while (item.firstChild) {
-          item.removeChild(item.firstChild)
-        }
-
-        //render posts for only dishes that are part of restaurant clicked
-        let response = await fetch('/.netlify/functions/get_dishes')
-        let dishes = await response.json()
-        for (let i=0; i<dishes.length; i++) {
-          let dish = dishes[i]
-          if(dish.restaurant == restaurant){
-            renderPost(dish)  
-          }     
-        }
-      })
-    }
 
     // Listen for the form submit and create/render the new post
     document.querySelector('form').addEventListener('submit', async function(event) {
@@ -85,11 +56,59 @@ firebase.auth().onAuthStateChanged(async function(user) {
       renderPost(dish)
     }) 
 
+    //create blank array query that will have all restaurants 
+    let restaurantQuery = []
+
     let response = await fetch('/.netlify/functions/get_dishes')
     let dishes = await response.json()
     for (let i=0; i<dishes.length; i++) {
       let dish = dishes[i]
-      renderPost(dish)       
+      renderPost(dish)
+      
+      //creates query of all restaurants to create filter buttons
+      let restaurant = dish.restaurant
+      console.log(restaurant)
+      console.log(restaurantQuery.indexOf(restaurant))
+      if (restaurantQuery.indexOf(restaurant) < 0){
+        restaurantQuery.push(restaurant)
+      }
+      console.log(restaurantQuery)      
+    }
+
+    //restaurant buttons
+    let restaurant = ''
+    let numRestaurants = restaurantQuery.length
+    restaurantQuery.sort()
+    for (let i=0; i<numRestaurants; i++) {
+      renderRestaurant(restaurantQuery[i])
+    }
+    let restaurants = document.querySelectorAll('.restaurant')
+
+    // console.log(numRestaurants)
+
+    for (let i=0; i<numRestaurants; i++) {
+      restaurants[i].addEventListener('click', async function(event) {
+        event.preventDefault()
+        restaurant = restaurants[i].innerHTML
+        // console.log(`${restaurant} clicked`)
+
+        //clear all previous rendered posts
+
+        const item = document.querySelector('.dishes')
+        while (item.firstChild) {
+          item.removeChild(item.firstChild)
+        }
+
+        //render posts for only dishes that are part of restaurant clicked
+        let response = await fetch('/.netlify/functions/get_dishes')
+        let dishes = await response.json()
+        for (let i=0; i<dishes.length; i++) {
+          let dish = dishes[i]
+          if(dish.restaurant == restaurant){
+            renderPost(dish)  
+          }     
+        }
+      })
     }
   
   } else {
@@ -111,6 +130,12 @@ firebase.auth().onAuthStateChanged(async function(user) {
     ui.start('.sign-in-or-sign-out', authUIConfig)
   }
 })
+
+async function renderRestaurant(restaurant) {
+  document.querySelector('.restaurants').insertAdjacentHTML('beforeend', `
+  <button class="restaurant bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-xl">${restaurant}</button>
+  `)
+}
 
 async function renderPost(dish) {
   let dishId = dish.id

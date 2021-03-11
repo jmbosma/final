@@ -35,8 +35,6 @@ exports.handler = async function(event) {
     created: firebase.firestore.FieldValue.serverTimestamp()
   }
 
-  console.log(newDish)
-
   let docRef = await db.collection('dishes').add(newDish)
 
   newDish.id = docRef.id
