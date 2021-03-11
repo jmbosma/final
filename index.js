@@ -144,16 +144,16 @@ async function renderPost(dish) {
   let dishId = dish.id
   document.querySelector('.dishes').insertAdjacentHTML('beforeend', `
     <div class="dish-${dishId} md:mt-16 mt-8 space-y-4 rounded-lg p-4 border-solid border-8 border-gray-400">
-      <div class="flex md:mx-0 mx-4">
-        <span class="w-1/3 text-left font-light text-lg">${dish.restaurant}</span>
-        <span class="w-1/3 text-center font-bold text-xl underline">${dish.dish}</span>
-        <span class="w-1/3 text-right text-lg font-light">@${dish.username}</span>
+      <div class="flex md:mx-4 mx-2">
+        <span class="w-1/4 text-left font-light text-lg">${dish.restaurant}</span>
+        <span class="w-1/2 text-center font-bold text-lg underline">${dish.dish}</span>
+        <span class="w-1/4 text-right text-lg font-light">@${dish.username}</span>
       </div>
       <div>
         <img src="${dish.imageUrl}" class="w-full shadow-xl">
       </div>
 
-      <div class="flex text-2xl md:mx-0 md:mx-4">
+      <div class="flex text-2xl md:mx-4 mx-2">
         <button class="like-button">🔥</button> 
         <span class = "w-1/4 likes">${dish.likes}</span>
         <span class="w-1/3 text-center rating">${dish.rating}/10</span>
