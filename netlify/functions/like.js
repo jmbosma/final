@@ -7,8 +7,8 @@ exports.handler = async function(event) {
   let dishId = body.dishId
   let userId = body.userId
   
-  console.log(`dish: ${dishId}`)
-  console.log(`user: ${userId}`)
+  // console.log(`dish: ${dishId}`)
+  // console.log(`user: ${userId}`)
 
   let querySnapshot = await db.collection('likes')
                               .where('dishId', '==', dishId)
