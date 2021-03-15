@@ -11,22 +11,14 @@ firebase.auth().onAuthStateChanged(async function(user) {
     // `
 
     // Sign-out button
-    document.querySelector('.sign-in-or-sign-out').innerHTML = `
-      <button class="text-grey-500 underline sign-out">Sign Out</button>
+    document.querySelector('.sign-out').innerHTML = `
+      <button class="top-0 right-0 text-white bg-blue-800 bg-opacity-50 rounded px-2 py-1 sign-out">Sign Out</button>
     `
     document.querySelector('.sign-out').addEventListener('click', function(event) {
       console.log('sign out clicked')
       firebase.auth().signOut()
       document.location.href = 'index.html'
     })
-  
-    document.querySelector('.sign-out').addEventListener('click', function(event) {
-      console.log('sign out clicked')
-      firebase.auth().signOut()
-      document.location.href = 'index.html'
-    })
-
-    
 
 
     // Listen for the form submit and create/render the new post
@@ -129,7 +121,7 @@ firebase.auth().onAuthStateChanged(async function(user) {
     }
 
     // Starts FirebaseUI Auth
-    ui.start('.sign-in-or-sign-out', authUIConfig)
+    ui.start('.sign-in', authUIConfig)
   }
 })
 
